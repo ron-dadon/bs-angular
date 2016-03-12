@@ -1,0 +1,43 @@
+[ng-click] {
+    cursor: pointer;
+}
+
+.pagination > li > a {
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+}
+
+.navbar-brand img {
+    display: inline-block;
+}
+
+* {
+    outline: none !important;
+}
+
+table.table-scroll thead, table.table-scroll tbody { display: block; }
+
+table.table-scroll tbody {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.bs-table table thead tr th {
+    user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+.bs-alerts-container {
+    position: fixed;
+    padding: 1em;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    margin-left:25%;
+    width: 50%;
+    z-index: 1051;
+}

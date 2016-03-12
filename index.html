@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bsAngular">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Bootstrap Directives</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://bootswatch.com/paper/bootstrap.min.css" rel="stylesheet">
+    <link href="bs-angular.css" rel="stylesheet">
+    <link href="spaces-helper.css" rel="stylesheet">
+</head>
+<body>
+<div ng-controller="formCtrl">
+    <bs-row>
+        <bs-col>
+            <form novalidate name="formTest" bs-form-validation>
+                <bs-form-group-feedback model="formTest.inputTest" only-error="true" label="::'Label'">
+                    <input type="text" bs-input ng-model="testModel" required name="inputTest">
+                </bs-form-group-feedback>
+                <bs-button type="button" ng-click="send(formTest)">Show Alert</bs-button>
+            </form>
+        </bs-col>
+    </bs-row>
+</div>
+<bs-container fluid="true">
+    <bs-row>
+        <bs-col>
+            <span ng-if="table.$hasSelected">{{table.getSelected()|json}}</span>
+            <span ng-if="!table.$hasSelected">Select items...</span>
+        </bs-col>
+    </bs-row>
+    <bs-row>
+        <bs-col>
+            <bs-panel ctx="::'primary'" header="::'Test'">
+                <bs-table table="table">
+                    <table class="table table-hover table-scroll m-b-0">
+                        <thead>
+                        <tr>
+                            <th width="1%"><input type="checkbox" ng-model="$table.$toggle" ng-change="$table.toggleAll($table.$toggle)"></th>
+                            <th width="10%" bs-table-sort="id" ng-click="$table.sort('id')">#</th>
+                            <th width="89%" bs-table-sort="title" ng-click="$table.sort('title')">Title</th>
+                        </tr>
+                        </thead>
+                        <tbody style="height: 300px">
+                        <tr ng-repeat="row in $table.$data track by $index">
+                            <td width="1%"><input type="checkbox" ng-model="row.$$selected" ng-change="$table.toggle(row, row.$$selected)"></td>
+                            <td width="10%">{{row.id}}</td>
+                            <td width="89%">{{row.title}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <bs-panel-footer class="p-0-5">
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-11">
+                                <bs-pagination size="::'sm'" page="$table.$params.page" pages="$table.$params.pages" max-pages="5" page-change="$table.page(page)"></bs-pagination>
+                            </div>
+                            <div class="col-xs-12 col-lg-1">
+                                <select class="form-control" bs-select-numeric ng-model="$table.$params.perPage" ng-change="$table.perPage($table.$params.perPage)">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                        </div>
+                    </bs-panel-footer>
+                </bs-table>
+            </bs-panel>
+        </bs-col>
+    </bs-row>
+</bs-container>
+<bs-button ng-click="showMessage()">Show Alert</bs-button>
+<bs-alerts-container></bs-alerts-container>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.min.js"></script>
+<script src="bs-angular.js"></script>
+</body>
+</html>
+
